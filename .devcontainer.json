@@ -1,0 +1,16 @@
+{
+  "build": {
+    "dockerfile": "dockerfile.dev"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.vscode-github-actions",
+        "ms-azuretools.vscode-docker",
+        "hashicorp.terraform",
+        "rust-lang.rust-analyzer",
+        "GitHub.copilot"
+      ]
+    }
+  }
+}
