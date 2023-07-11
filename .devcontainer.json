@@ -1,7 +1,5 @@
 {
-  "build": {
-    "dockerfile": "dockerfile.dev"
-  },
+  "image": "ghcr.io/aiden-ziegelaar/rust-lambda-monorepo-dc:latest",
   "customizations": {
     "vscode": {
       "extensions": [

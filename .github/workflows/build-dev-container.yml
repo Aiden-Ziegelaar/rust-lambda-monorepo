@@ -24,3 +24,4 @@ jobs:
         imageName: ghcr.io/aiden-ziegelaar/rust-lambda-monorepo-dc
         noCache: true
         push: always
+        subFolder: devcontainerBuild
