@@ -13,7 +13,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-      shell: bash
-    - run: cargo --version
+    - run: rustup override set ${{ inputs.rust-version }}
+      shell: bash 
+    - run: rustup toolchain install stable
+      shell: bash 
+    - run: rustup target install x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu
       shell: bash 
