@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/cargo-lambda/cargo-lambda
+    defaults:
+      run:
+          working-directory: /source
+    volumes:
+        - ./:/source
     steps:
       - name: Cargo Test
         run: make test
