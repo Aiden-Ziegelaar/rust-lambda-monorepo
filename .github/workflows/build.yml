@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - id: Install Rust
-      uses: .github/actions/install-rust
+      uses: ./.github/actions/install-rust
       with:
         rust-version: '1.71.0'
         zig-version: '0.10.1'
