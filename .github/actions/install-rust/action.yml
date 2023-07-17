@@ -13,7 +13,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
+    - run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y
       shell: bash
     - run: cargo --version
       shell: bash 
