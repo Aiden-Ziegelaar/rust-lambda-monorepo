@@ -1,0 +1,15 @@
+name: 'Build Lambdas'
+on:
+  push:
+    branches:
+      - main
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/cargo-lambda/cargo-lambda
+    steps:
+      - name: Cargo Test
+        run: make test
+      - name: Cargo Build
+        run: make build
