@@ -14,8 +14,37 @@ runs:
   using: "composite"
   steps:
     - run: rustup override set ${{ inputs.rust-version }}
-      shell: bash 
+      shell: bash
     - run: rustup toolchain install stable
-      shell: bash 
+      shell: bash
     - run: rustup target install x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu
-      shell: bash 
+      shell: bash
+    - run: set -eux; \
+            dpkgArch="$(dpkg --print-architecture)"; \
+            case "${dpkgArch##*-}" in \
+            amd64) zigArch='x86_64';; \
+            arm64) zigArch='aarch64';; \
+            i386) zigArch='i386';; \
+            esac; \
+            url="https://ziglang.org/download/${{ inputs.zig-version }}/zig-linux-${zigArch}-${{ inputs.zig-version }}.tar.xz"; \
+            wget "$url"; \
+            tar xf "zig-linux-${zigArch}-${{ inputs.zig-version }}.tar.xz"; \
+            mv zig-linux-${zigArch}-${{ inputs.zig-version }} zig; \
+            rm "zig-linux-${zigArch}-${{ inputs.zig-version }}.tar.xz"; \
+            mkdir /.cache; \
+            chmod a+w /.cache;
+      shell: bash
+    - run: set -eux; \
+            mkdir cargo-lambda; \
+            cd cargo-lambda; \
+            dpkgArch="$(dpkg --print-architecture)"; \
+            case "${dpkgArch##*-}" in \
+            amd64) lambdaArch='x86_64-unknown-linux-musl';; \
+            arm64) lambdaArch='aarch64-unknown-linux-musl';; \
+            i386) lambdaArch='i686-unknown-linux-musl';; \
+            esac; \
+            url="https://github.com/cargo-lambda/cargo-lambda/releases/download/${{ inputs.cargo-lambda-version }}/cargo-lambda-${{ inputs.cargo-lambda-version }}.${lambdaArch}.tar.gz"; \
+            wget "$url"; \
+            tar xf "cargo-lambda-${{ inputs.cargo-lambda-version }}.${lambdaArch}.tar.gz"; \
+            rm "cargo-lambda-${{ inputs.cargo-lambda-version }}.${lambdaArch}.tar.gz";
+      shell: bash
