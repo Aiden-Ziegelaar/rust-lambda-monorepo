@@ -1,0 +1,18 @@
+name: 'Install Rust'
+description: 'Install Rust'
+inputs:
+  rust-version:
+    description: 'Which version of Rust to install'
+    required: true
+  cargo-lambda-version:
+    description: 'Which version of cargo-lambda to install'
+    required: true
+  zig-version:
+    description: 'Which version of Zig compiler to install'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      shell: bash
+    - id: random-number-generator

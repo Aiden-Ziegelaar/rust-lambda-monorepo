@@ -4,14 +4,10 @@ on:
     branches:
       - main
 jobs:
-  container-test-job:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/cargo-lambda/cargo-lambda
-      volumes:
-          - ${{ github.workspace }}:/source
-    steps:
-      - name: Cargo Test
-        run: cd /source && ls
-      - name: Cargo Build
-        run: cd /source && ls && make build
+  test:
+    - id: Install Rust
+      uses: .github/actions/install-rust
+      with:
+        rust-version: '1.71.0'
+        zig-version: '0.10.1'
+        cargo-lambda-version: '0.19.2'
