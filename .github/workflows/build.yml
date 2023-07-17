@@ -12,6 +12,6 @@ jobs:
           - ${{ github.workspace }}:/source
     steps:
       - name: Cargo Test
-        run: make test
+        run: cd /source && make test
       - name: Cargo Build
-        run: make build
+        run: cd /source && make build
