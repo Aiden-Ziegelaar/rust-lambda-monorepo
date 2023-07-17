@@ -9,7 +9,7 @@ jobs:
     container:
       image: ghcr.io/cargo-lambda/cargo-lambda
       volumes:
-          - ./:/source
+          - ${{ github.workspace }}:/source
     steps:
       - name: Cargo Test
         run: make test
