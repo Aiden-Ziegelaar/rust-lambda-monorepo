@@ -5,6 +5,10 @@ on:
       - main
 jobs:
   test:
+    runs-on: ubuntu-latest
+    name: A job to run cargo test
+    steps:
+    - uses: actions/checkout@v3
     - id: Install Rust
       uses: .github/actions/install-rust
       with:
